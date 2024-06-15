@@ -1,0 +1,63 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    char op;
+    int numCount;
+    vector<float> numbers;
+
+    cout << "How many digits do you want to calculate on ";
+    cin >> numCount;
+
+    // Input numbers
+    for (int i = 0; i < numCount; ++i) {
+        float num;
+        cout << "Enter " << i + 1 <<" number :";
+        cin >> num;
+        numbers.push_back(num);
+    }
+
+    cout << "Enter which operator do you want to use (+, -, *, /): ";
+    cin >> op;
+
+    switch(op) {
+        case '+': {
+            float sum = 0;
+            for (float num : numbers)
+                sum += num;
+            cout << "Result: " << sum;
+            break;
+        }
+        case '-': {
+            float result = numbers[0];
+            for (int i = 1; i < numCount; ++i)
+                result -= numbers[i];
+            cout << "Result: " << result;
+            break;
+        }
+        case '*': {
+            float product = 1;
+            for (float num : numbers)
+                product *= num;
+            cout << "Result: " << product;
+            break;
+        }
+        case '/': {
+            if (numbers[1] != 0) {
+                float quotient = numbers[0];
+                for (int i = 1; i < numCount; ++i)
+                    quotient /= numbers[i];
+                cout << "Result: " << quotient;
+            } else {
+                cout << "Error! Division by zero.";
+            }
+            break;
+        }
+        default:
+            cout << "Invalid operator!";
+    }
+
+    return 0;
+}
